@@ -7,10 +7,192 @@
   pointer-events: none;
 }
 
+#liBtn {
+  margin: 5px;
+}
+
+#menu {
+  border-bottom:none !important;
+}
+
+#commentTextarea {
+  resize: none !important;
+  overflow: auto !important;
+}
+
+.delBtn {
+  float: right;
+}
+
+#skip{
+  background-color:white;
+  text-decoration: underline;
+  font-style: italic;
+  color:black;
+  border:none;
+}
+
+#skip:focus{
+  outline:none;
+  border:none;
+}
+
+#content {
+  box-shadow: 1px 1px 5px #555 inset;
+  margin:5px;
+}
+
+#childPhoto {
+  display: block;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  /* border:none; */
+  margin:10px auto 10px auto;
+
+}
+
+#milestoneImg {
+  height:35px;
+  width:35px;
+}
+
+#showCommentBtn{
+  border: none;
+  background-color:white;
+}
+
+#milestone {
+  text-align:center;
+  /* border: black solid 1px; */
+  width: 50%;
+  margin:20px auto;
+  box-shadow: 0px 8px 6px #888888;
+  padding:20px;
+}
+#post {
+  padding: 15px;  
+  border: black solid 1px;
+  width: 50%;
+  margin:20px auto;
+  box-shadow: 0px 8px 6px #888888;
+}
+
+#postSummary {
+  display:inline-block;
+  padding: 10px;
+}
+
+#postDate {
+  display:inline-block;
+  color:rgb(138, 138, 138);
+}
+
+#postBody {
+  margin: 0 10% 0 10%;
+}
+
+#postComments {
+  display:inline-block;
+}
+
+#likes {
+  display:inline-block;
+  padding:auto;
+}
+
+#postFooter {
+  margin:10px;
+}
+
+#userInfo {
+  padding-top:0px !important;
+  padding-bottom:0px !important;
+}
+
+#childInfo {
+  text-align: center;
+}
+
+#profpicThumbnail {
+  display: inline-block;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin:10px;
+}
+
+#name {
+  font-family: cursive;
+  text-align:center;
+  margin:20px 20px 0px;
+  padding: auto auto 0px;
+  height: 50px;
+}
+
+#thumbnail {
+  width: 100px;
+  height: 100px;
+  margin: 2px;
+}
+
+#formFooter {
+  float:right;
+}
+
+#myPhotos {
+  height: 250px;
+  width:auto;
+  display:inline-block;
+  padding: 15px;
+}
+
+#photos {
+  margin:0 3% 0 3%;
+}
+
+#liked {
+  color: red !important;
+}
+
+#unliked {
+  color: black !important;
+}
+
+#unliked:hover{
+  color: red !important;
+}
+
+#likes:hover {
+  cursor: pointer;
+}
+
+body {
+  margin-top:100px;
+}
+
+#displayPhoto {
+  max-width:500px;
+  height:auto;
+}
+
+#none {
+  text-align: center;
+  color:lightgray;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.dropdown {
+  display: inline-block;
 }
 
 .App-header {
@@ -35,4 +217,84 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#homepage {
+  /* border: solid black 1px; */
+  /* width: 60%; */
+  /* height: 50%; */
+  margin:5% 10% 5% 10%;
+  text-align:center;
+  padding: 50px;
+}
+
+#homepage h3 {
+  margin-top:25px;
+}
+
+#navBarLinks {
+  margin-left: 90%;
+}
+
+#navBarLink {
+  display:inline-block;
+}
+
+#milestoneCard {
+  text-align:center;
+}
+
+#card {
+  margin-bottom: 30px;
+  width: 1000px;
+  background-color: white;
+  padding: 20px;
+}
+
+#actionBtn {
+  border-radius: 0%;
+  background-color: lightskyblue;
+  border:black solid 1px;
+  color:black;
+}
+#navBar {
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1;
+}
+
+#actionBtn:hover {
+  background-color: blue;
+}
+
+#timelineHeader {
+  text-align:center;
+  margin:20px;
+}
+
+.modal {
+  left: auto !important;
+  top: auto !important;
+  padding: 0px !important;
+  background: none !important;
+  box-shadow: none !important;
+
+}
+
+
+.modal img {
+  margin-left:auto;
+  margin-right:auto;
+  display:block;
+}
+
+
+#logInForm {
+  width:35%;
+  height:50%;
+  border:solid black 1px;
+  margin:2% auto;
+  padding: 50px;
+  background-color: white;
 }
