@@ -5,6 +5,7 @@ export default function WithAuth(AuthorizedComponent) {
   return class Auth extends Component {
 
     componentDidMount(){
+      let { history, authUser } = this.props
       const reqObj = {
         headers: {
           'Content-Type': 'application/json',
@@ -13,10 +14,7 @@ export default function WithAuth(AuthorizedComponent) {
       }
       fetch('http://localhost:3000/current_user', reqObj)
       .then(resp => resp.json())
-      .then(user => {
-          user.error? this.props.history.push('/login')
-          : this.props.authUser(user)
-      })
+      .then(user => user.error ? history.push('/login') : authUser(user))
     }
 
     render(){

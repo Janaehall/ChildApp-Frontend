@@ -1,4 +1,4 @@
-import {setErrors, clearErrors} from './errors'
+import {setErrors} from './errors'
 import {history} from './history'
 
 export const addMilestone = milestone => {
@@ -41,3 +41,26 @@ export function editMilestone(milestone){
     .then(milestone => dispatch(editThisMilestone(milestone)))
   }
 }
+
+export function postMilestone(milestone){
+  console.log(milestone)
+  return function(dispatch){
+    let { childId, content, date } = milestone
+    let reqObj = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({child_id: childId, content, date})
+    }
+    fetch(`http://localhost:3000/milestones`, reqObj)
+    .then(resp => resp.json())
+    .then(milestone => {
+      if(milestone.errors){
+        dispatch(setErrors(milestone.errors))
+      } else {
+        dispatch(addMilestone(milestone))
+        history.push(`/${milestone.child_id}`)
+      }
+    })
+  }
+}
+

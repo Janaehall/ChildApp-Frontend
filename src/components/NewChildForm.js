@@ -36,18 +36,18 @@ class NewChildForm extends Component {
   }
 
   handleChange = e => {
-    e.target.name === 'photo'?
-      this.setState({photo: e.target.files[0]})
-    : this.setState({[e.target.name]: e.target.value})
+    e.target.name === 'photo'
+      ? this.setState({photo: e.target.files[0]})
+      : this.setState({[e.target.name]: e.target.value})
   }
 
   renderMessages = () => {
     return(
-      this.state.errors?
-        <div>
-          {this.state.errors.map(error => <Message size="tiny" error header={error}/>)}
-        </div>
-      :null
+      this.state.errors
+        ? <div>
+            {this.state.errors.map(error => <Message size="tiny" error header={error}/>)}
+          </div>
+        : null
     )
   }
 

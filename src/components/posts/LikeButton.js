@@ -9,12 +9,12 @@ class LikeButton extends Component {
   }
 
   deleteLike = () => {
-    let {post, currentUser, delLike} = this.props
+    let { post, currentUser, delLike } = this.props
     let like = post.likes.find(like => like.user_id === currentUser.id)
     
     fetch(`http://localhost:3000/likes/${like.id}`, {'method':'DELETE'})
     .then(resp => {
-      delLike(like.post_id, like.id)
+      delLike(like)
       this.setState({hasLiked: false})
     })
   }
@@ -38,10 +38,10 @@ class LikeButton extends Component {
 
   render(){
     return(
-    <div id="likes" onClick={this.toggleLike}>
-      <Icon id={this.state.hasLiked? "liked":"unliked"} name='like'/>
-      {this.props.post.likes.length} Likes
-    </div>
+      <div id="likes" onClick={this.toggleLike}>
+        <Icon id={this.state.hasLiked? "liked":"unliked"} name='like'/>
+        {this.props.post.likes.length} Likes
+      </div>
     )
   }
 }
@@ -55,7 +55,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addLike: like => dispatch(addLike(like)),
-    delLike: (postId, likeId) => dispatch(delLike(postId, likeId))
+    delLike: like => dispatch(delLike(like))
   }
 }
 

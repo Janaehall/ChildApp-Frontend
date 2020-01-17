@@ -1,4 +1,5 @@
-import {history} from './history'
+import { history } from './history'
+import { setErrors } from './errors'
 
 export const authUser = user => {
   return {
@@ -39,3 +40,47 @@ export function logIn(user){
     })
   }
 }
+
+export function submitUser(newUser){
+  return function(dispatch){
+    let userData = new FormData()
+    userData.append('user[name]', newUser.name)
+    userData.append('user[email]', newUser.email)
+    userData.append('user[password]', newUser.password)
+    userData.append('user[password_confirmation]', newUser.password_confirmation)
+    if(newUser.profile_pic) {
+      userData.append('user[profile_pic]', newUser.profile_pic)
+    }
+    fetch(`http://localhost:3000/users`, {method: 'POST', body: userData})
+    .then(resp => resp.json())
+    .then(user => {
+      user.errors
+        ? dispatch(setErrors(user.errors))
+        : dispatch(logIn({email: newUser.email, password: newUser.password}))
+    })
+  }
+}
+
+// onSubmit = e => {
+//   e.preventDefault()
+//   let userData = new FormData()
+//   userData.append('user[name]', this.state.name)
+//   userData.append('user[email]', this.state.email)
+//   userData.append('user[password]', this.state.password)
+//   userData.append('user[password_confirmation]', this.state.password_confirmation)
+//   if(this.state.profile_pic) {
+//     userData.append('user[profile_pic]', this.state.profile_pic)
+//   }
+//   this.createUser({method: 'POST', body: userData})
+// }
+
+
+// createUser = reqObj => {
+//   fetch(`http://localhost:3000/users`, reqObj)
+//   .then(resp => resp.json())
+//   .then(user => {
+//     user.errors
+//       ? this.setState({errors: user.errors})
+//       : this.props.logIn({email: user.email, password: this.state.password})
+//   })
+// }

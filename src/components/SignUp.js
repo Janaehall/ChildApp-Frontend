@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Form, Button, Message} from 'semantic-ui-react'
-import {logIn} from '../actions/user'
+import { submitUser } from '../actions/user'
 
 class SignUp extends Component {
 
@@ -14,46 +14,24 @@ class SignUp extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-    let userData = new FormData()
-    userData.append('user[name]', this.state.name)
-    userData.append('user[email]', this.state.email)
-    userData.append('user[password]', this.state.password)
-    userData.append('user[password_confirmation]', this.state.password_confirmation)
-    if(this.state.profile_pic) {
-      userData.append('user[profile_pic]', this.state.profile_pic)
-    }
-    let reqObj = {
-      method: 'POST',
-      body: userData
-      }
-    this.createUser(reqObj)
+    this.props.submitUser(this.state)
   }
-
-
-  createUser = reqObj => {
-    fetch(`http://localhost:3000/users`, reqObj)
-    .then(resp => resp.json())
-    .then(user => {
-      user.errors?
-        this.setState({errors: user.errors})
-      : this.props.logIn({email: user.email, password: this.state.password})
-    })
-  }
-
+  
   renderMessages = () => {
+    let { errors } = this.props
     return(
-      this.state.errors?
-        <div>
-          {this.state.errors.map(error => <Message size="tiny" error header={error}/>)}
-        </div>
-      :null
+      errors
+        ? <div>
+            {errors.map(error => <Message size="tiny" error header={error}/>)}
+          </div>
+        : null
     )
   }
 
   handleChange = e => {
-    e.target.name === 'profile_pic'?
-      this.setState({profile_pic: e.target.files[0]})
-    : this.setState({[e.target.name]: e.target.value})
+    e.target.name === 'profile_pic'
+      ? this.setState({profile_pic: e.target.files[0]})
+      : this.setState({[e.target.name]: e.target.value})
   }
 
 
@@ -91,14 +69,20 @@ class SignUp extends Component {
   }
 }
 
-
- 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    logIn: (user) => dispatch(logIn(user))
+    errors: state.errors
   };
 };
 
 
  
-export default connect(null,mapDispatchToProps)(SignUp);
+const mapDispatchToProps = dispatch => {
+  return {
+    submitUser: (user) => dispatch(submitUser(user))
+  };
+};
+
+
+ 
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

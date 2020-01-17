@@ -4,7 +4,9 @@ import {Modal} from 'semantic-ui-react'
 const PhotoModal = props => {
   return(
     <Modal open={props.show} onClose={props.hide}>
-      <img src={props.photo} alt=''/>
+      {props.video
+      ? <video id="displayVideo" src={props.video} alt='' controls/>
+      : <img id="displayPhoto" src={props.photo} alt=''/>}
     </Modal>
   )
 }

@@ -22,17 +22,18 @@ class EditMilestoneForm extends Component {
   }
 
   render() {
+    let {date, content} = this.state.milestone
     return(
           <Form onSubmit={this.onSubmit}>
           <Form.Field>
             <label>Date</label>
-            <input value={this.state.milestone.date} name="date" type="date" onChange={this.handleChange}/>
+            <input value={date} name="date" type="date" onChange={this.handleChange}/>
           </Form.Field>
           <Form.Field>
             <label>Milestone</label>
-            <input value={this.state.milestone.content} name="content" onChange={this.handleChange}/>
+            <input value={content} name="content" onChange={this.handleChange}/>
           </Form.Field>
-          <Button type='submit'>Add</Button>
+          <Button type='submit'>Done</Button>
         </Form>
     )
   }

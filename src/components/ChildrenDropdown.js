@@ -1,20 +1,23 @@
-import React, {Component} from 'react'
-import {Dropdown} from 'semantic-ui-react'
-import {history} from '../actions/history'
+import React, { Component } from 'react'
+import { Dropdown } from 'semantic-ui-react'
+import { history } from '../actions/history'
 
 class ChildrenDropdown extends Component {
 
   renderChildren = () => {
     let { children, handleClick } = this.props
-    return children.length > 0?
-      children.map(child => {
-        return (
-          <Dropdown.Item key={child.id} onClick={() => handleClick(child.id)}>
-            {child.name}
-          </Dropdown.Item>
-        )
-      })
+    return children.length > 0
+     ? <div id="children">
+          {children.map(child => {
+            return (
+              <Dropdown.Item key={child.id} onClick={() => handleClick(child.id)}>
+                {child.name}
+              </Dropdown.Item>
+            )
+          })}
+       </div>
     : <Dropdown.Item id="none">None</Dropdown.Item>
+
   }
 
   render(){

@@ -11,13 +11,15 @@
   margin: 5px;
 }
 
-#menu {
+
+#actionBtns {
   border-bottom:none !important;
 }
 
 #commentTextarea {
   resize: none !important;
   overflow: auto !important;
+  background-color:white !important;
 }
 
 .delBtn {
@@ -61,28 +63,157 @@
 
 #showCommentBtn{
   border: none;
-  background-color:white;
+  background-color:inherit;
+
 }
 
+/* #postHeader {
+  background-color: rgb(218, 98, 118);
+  border-radius: 2%;
+} */
+/* 
 #milestone {
   text-align:center;
+  z-index: 2;
   /* border: black solid 1px; */
-  width: 50%;
+  /* width: 50%;
   margin:20px auto;
   box-shadow: 0px 8px 6px #888888;
   padding:20px;
+  float:right; */
+/* } */ 
+.moveright {
+  margin-left:5%;
+  border-radius: 2%;
+  /* width: 50%; */
+  width: 35%;
 }
-#post {
-  padding: 15px;  
-  border: black solid 1px;
+
+.timelineDate {
+  margin:0 auto;
+  width:100px;
+  height:100px;
+  border:solid black 1px;
+  padding-top:35px;
+  text-align:center;
+  /* display:inline-block; */
+  /* margin-left:auto;
+  margin-right:auto; */
+  /* display:block; */
+  border-radius: 50%;
+}
+
+.moveleft {
+  margin-left:60%;
+  /* margin-top:10px; */
+  /* width: 50%; */
+  width: 35%;
+}
+
+.divider {
+  /* display:inline-block; */
+  /* float:left; */
+  left:-10% !important;
+  z-index:-1 !important;
+  height: 110% !important;
+  /* border-right: solid black 1px !important; */
+  /* margin-right: 20px !important; */
+  /* top:0% !important; */
+}
+
+#p {
+  background-color:white;
+}
+
+#editTextarea {
+  height: 10% !important;
+  resize: none !important;
+  overflow: auto !important;
+}
+
+.ui.vertical.divider::after, 
+.ui.vertical.divider::before {
+  z-index: -1 !important;
+}
+
+#circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display:inline-block;
+  right: -18%;
+  position:relative;
+  border: solid black 1px;
+
+}
+
+
+.post {
+  margin: 2em auto;
   width: 50%;
-  margin:20px auto;
+	position: relative;
+	color: rgba(black, .7);
   box-shadow: 0px 8px 6px #888888;
+}
+
+.postOutline {
+  margin: 2em auto;
+  width: 60%;
+  position: relative;
+}
+
+#postLine {
+  border-left: solid black 4px;
+  width: 1px;
+}
+
+/* .post:before {
+  content: attr(date-is);
+		position: absolute;
+		left: 2em;
+		font-weight: bold;
+		top: 1em;
+		display: inline;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 700;
+		font-size: .785rem;
+} */
+
+
+
+.milestone {
+   padding: 0em 0em 3em 0em;
+   position: relative; 
+   margin: 2em auto;
+   box-shadow: 0px 8px 6px #888888;
+
+
+   /* z-index:1000; */
+   /* background-color:rgb(185, 206, 211); */
+   /* float:right; */
+   /* display: inline-block; */
+   /* display:flex; */
+   /* position:fixed; */
+   /* border: black solid 1px; */
+   /* margin-left:60%; */
+   /* margin-top:10px; */
+   width: 50%;
+   /* width: 35%; */
+   text-align:center;
+   /* margin:20px auto; */
+   /* margin: 10px; */
+   /* right:0; */
+   /* right:0px; */
+   /* box-shadow: 0px 5px 8px 0px #999898; */
 }
 
 #postSummary {
   display:inline-block;
   padding: 10px;
+}
+
+.milestoneContent {
+  padding-top: 2em;
 }
 
 #postDate {
@@ -92,6 +223,10 @@
 
 #postBody {
   margin: 0 10% 0 10%;
+}
+
+.postContent {
+  margin-bottom: 10px;
 }
 
 #postComments {
@@ -135,16 +270,26 @@
 }
 
 #thumbnail {
-  width: 100px;
-  height: 100px;
+  max-height: 100px;
+  margin: 2px;
+}
+
+.postFormTn {
+  max-height:60px;
+  display:inline-block;
   margin: 2px;
 }
 
 #formFooter {
   float:right;
 }
+/* 
+#displayPhoto {
+  max-height:200%;
+} */
 
-#myPhotos {
+
+.myMedia {
   height: 250px;
   width:auto;
   display:inline-block;
@@ -171,13 +316,71 @@
   cursor: pointer;
 }
 
-body {
-  margin-top:100px;
+#centerLine {
+  top:15%;
+  height:100%;
+  width:0px;
+  border: solid black 2px;
+  /* display:inline-block; */
+  z-index:-2;
+  position:fixed;
+  /* position: static; */
+  margin-left:50%;
+  /* margin: auto 0px auto 0px; */
 }
 
+
+#line {
+  text-align:center;
+  padding-bottom:20px;
+  height:0px;
+  /* margin:10% 50%; */
+  margin-left:40%;
+  /* margin-right:50%; */
+  margin-top:1%;
+  /* padding:10% 50%; */
+  width:10%;
+  float:left;
+  z-index:-1;
+  /* position:fixed; */
+  /* display:flex; */
+  /* display:inline-block; */
+  /* position:fixed; */
+  border-bottom:solid black 4px;
+}
+
+#milestoneLine {
+  height:20px;
+  padding-bottom:20px;
+  /* margin:10% 50%; */
+  margin-right:40%;
+  margin-top:1%;
+  /* padding:10% 50%; */
+  width:10%;
+  float:right;
+  z-index:-1;
+  text-align:center;
+  /* text-align:center; */
+  /* position:fixed; */
+  /* display:flex; */
+  /* display:inline-block; */
+  /* position:fixed; */
+  border-bottom:solid black 4px;
+}
+
+body {
+  margin-top:100px;
+  /* background-color: #F8F8FF; */
+}
+
+#date {
+  margin-left:auto;
+  display:inline-block;
+}
+
+
 #displayPhoto {
-  max-width:500px;
-  height:auto;
+  max-height: 100vh;
 }
 
 #none {
@@ -251,6 +454,26 @@ body {
   padding: 20px;
 }
 
+video {
+  max-height: 500px;
+}
+
+.ui.modal {
+  text-align:center !important;
+}
+
+
+#displayVideo {
+  max-height: 90vh;
+  margin-right:auto;
+  margin-left:auto;
+  outline:none;
+}
+
+#displayVideo:focus {
+  outline:none;
+}
+
 #actionBtn {
   border-radius: 0%;
   background-color: lightskyblue;
@@ -268,9 +491,48 @@ body {
   background-color: blue;
 }
 
+
 #timelineHeader {
   text-align:center;
   margin:20px;
+}
+
+#childPage {
+  margin-top:0px;
+  top:0;
+  /* background-color: #F8F8FF; */
+  background-color:white;
+
+}
+
+#timelineBtns > .item {
+  margin: 0% 2.5% !important;
+  /* background-color:white; */
+}
+
+#timelineBtns > .item:hover {
+  color: rgb(102, 71, 71) !important;
+}
+
+#actionBtns > .item {
+  margin: 0px 5% !important;
+  /* background-color:white; */
+}
+
+#children {
+  overflow:auto !important;
+  max-height: 200px !important;;
+}
+
+#timelineBtns {
+  margin-top: 10px;
+  /* border-top: solid rgba(0, 0, 0, 0.479) 1px; */
+}
+
+#childInfo > #birthday {
+  border-bottom: solid black 1px;
+  margin: 0% 40%;
+  padding-bottom: 1.5%;
 }
 
 .modal {

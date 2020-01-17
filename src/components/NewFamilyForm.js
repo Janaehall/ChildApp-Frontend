@@ -24,21 +24,23 @@ class NewFamilyForm extends Component {
 
   addFamily = (reqObj) => {
     let route
-    this.state.parent? route = "parent_children" : route = "child_families"
+    this.state.parent ? route = "parent_children" : route = "child_families"
     fetch(`http://localhost:3000/${route}`, reqObj)
     .then(resp => resp.json())
     .then(resp => {
-      resp.error? 
-      this.setState({message: null, error: resp.error})
-      : this.setState({error: null, message: resp.message})
+      resp.error
+        ? this.setState({message: null, error: resp.error})
+        : this.setState({error: null, message: resp.message})
     })
   }
 
   renderMessage = () => {
+    let { error, message } = this.state
     return (
-      this.state.error? <Message error size="tiny" header={this.state.error}/>
-      : this.state.message? <Message success size="tiny" header={this.state.message}/>
-      : null
+      error
+        ? <Message error size="tiny" header={error}/>
+        : message? <Message success size="tiny" header={message}/>
+        : null
     )
   }
 

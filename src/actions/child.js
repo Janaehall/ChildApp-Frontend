@@ -6,15 +6,22 @@ export const receivedChild = child => {
   }
 }
 
+export const clearChild = () => {
+  return {
+    type: "CLEAR_CHILD"
+  }
+}
+
 export const fetchchild = () => {
   return {
     type: "FETCH_CHILD"
   }
 }
 
-export const delChild = () => {
+export const editThisChild = child => {
   return {
-    type: "DELETE_CHILD"
+    type: "EDIT_CHILD",
+    child
   }
 }
 
@@ -26,6 +33,29 @@ export function setChild(id){
     .then(resp => resp.json())
     .then(child=> {
       dispatch(receivedChild(child))
+    })
+  }
+}
+
+export function editChild(child){
+  return function(dispatch){
+    console.log(child)
+    let {name, birthdate, id} = child
+    // let childData = new FormData ()
+    // if(photo){
+    //   childData.append('child[photo]', photo)
+    // }
+    // childData.append('child[name]', name)
+    // childData.append('child[birthdate]', birthdate)
+    let reqObj = {
+      method: 'PATCH', 
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({name, birthdate})
+    }
+    fetch(`http://localhost:3000/children/${id}`, reqObj)
+    .then(resp => resp.json())
+    .then(child => {
+      dispatch(editThisChild(child))
     })
   }
 }

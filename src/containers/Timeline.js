@@ -1,31 +1,34 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Milestone from '../components/milestones/Milestone'
 import Post from '../components/posts/Post'
-import {setChild} from '../actions/child'
-import {Loader} from 'semantic-ui-react'
+import { setChild } from '../actions/child'
 
 
 class Timeline extends Component {
 
   renderTimeline = () => {
-    let {posts, milestones} = this.props.child
+    let { posts, milestones } = this.props.child
     return(
-      posts.concat(milestones).length > 0?
-        this.renderMilestonesAndPosts()
-      : <h1 id="timelineHeader">No Posts</h1>
+      posts.concat(milestones).length > 0
+        ? this.renderMilestonesAndPosts()
+        : <h1 id="timelineHeader">No Posts</h1>
     )
   }
 
   renderMilestonesAndPosts = () => {
-    let {posts, milestones} = this.props.child
-    let items = (posts.concat(milestones)).sort((a,b) => {
-      return b.created_at > a.created_at ? 1 : b.created_at < a.created_at ? -1 : 0
+    let {posts, milestones, name} = this.props.child
+    posts = posts.map(post => {
+      return {...post, date: post.created_at}
     })
-
+    let items = (posts.concat(milestones)).sort((a,b) => {
+      return b.date > a.date ? 1 : b.date < a.date ? -1 : 0
+    })
     return (
       items.map(item => {
-        return posts.includes(item) ? <Post post={item}/> : <Milestone milestone={item}/>
+        return posts.includes(item) 
+          ? <Post post={item}/> 
+          : <Milestone name={name} milestone={item}/>
       })
     )
   }
@@ -33,12 +36,7 @@ class Timeline extends Component {
   render(){
     return(
       <div id="timeline">
-        {this.props.child.hasFetched? 
-          this.renderTimeline()
-        : this.props.child.isFetching? 
-          <Loader active size='massive' inline='centered'>Loading</Loader>
-        : null
-        }
+        {this.renderTimeline()}
       </div>
     )
   }

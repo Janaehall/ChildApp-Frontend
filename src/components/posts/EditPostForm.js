@@ -24,7 +24,7 @@ class EditPostForm extends Component {
             <Form.TextArea id="commentTextarea" 
               value={this.state.post.content} name="content" onChange={this.handleChange}/>
           </Form.Field>
-          <Button type='submit'>Add</Button>
+          <Button type='submit'>Done</Button>
         </Form>
     )
   }

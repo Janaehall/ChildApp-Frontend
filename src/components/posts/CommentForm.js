@@ -1,51 +1,36 @@
-import React, {Component} from 'react'
-import {Form, Button} from 'semantic-ui-react'
-import {connect} from 'react-redux'
-import {addComment} from '../../actions/comments'
+import React, { Component } from 'react'
+import { Form, Button } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { postComment } from '../../actions/comments'
+import { clearErrors } from '../../actions/errors'
 
 
 class CommentForm extends Component {
   state = {
-    content: '',
-    class: 'field'
+    userId: this.props.currentUser.id,
+    postId: this.props.post.id,
+    content: ''
+  }
+
+  componentWillUnmount(){
+    this.props.clearErrors()
   }
 
   handleChange = e => this.setState({content: e.target.value})
 
   onSubmit = e => {
-    let { currentUser, post } = this.props
     e.preventDefault()
-    let reqObj = {
-      'method': 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        user_id: currentUser.id,
-        post_id: post.id,
-        content: this.state.content
-      })
-    }
-    this.postComment(reqObj)
-  }
-
-  postComment = reqObj => {
-    let { post, addComment } = this.props
-    fetch(`http://localhost:3000/comments`, reqObj)
-    .then(resp => resp.json())
-    .then(comment => {
-      if(comment.error){
-        this.setState({class: 'field error'})
-      } else {
-        addComment(post.id, comment)
-        this.setState({content: '', class: 'field'})
-      }
-    })
+    this.props.postComment(this.state)
+    this.setState({content: ''})
   }
 
   render(){
+    let myClass
+    this.props.errors ? myClass = "field error" : myClass = "field"
     return(
       <Form reply>
         <Form.TextArea 
-          className={this.state.class} id="commentTextarea" 
+          className={myClass} id="commentTextarea" 
           value={this.state.content} onChange={this.handleChange}/>
         <Button onClick={this.onSubmit} content='Add Comment' labelPosition='left' icon='edit' primary />
       </Form>
@@ -55,13 +40,15 @@ class CommentForm extends Component {
 
 const mapStateToProps = state => {
   return{
-    currentUser: state.currentUser.user
+    currentUser: state.currentUser.user,
+    errors: state.errors
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return{
-    addComment: (post_id, comment) => dispatch(addComment(post_id, comment))
+    postComment: (comment) => dispatch(postComment(comment)),
+    clearErrors: () => dispatch(clearErrors())
   }
 }
 

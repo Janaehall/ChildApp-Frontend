@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Form, Button, Message } from 'semantic-ui-react'
-import {addMilestone} from '../../actions/milestones'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Form, Button, Message } from 'semantic-ui-react'
+import { postMilestone } from '../../actions/milestones'
+import { clearErrors } from '../../actions/errors'
 
 
 
@@ -12,45 +13,24 @@ class MilestoneForm extends Component {
     date: ''
   }
 
-  onSubmit = e => {
-    e.preventDefault()
-    let child_id = this.props.match.params.id
-    let {content, date } = this.state
-    let reqObj = {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({child_id, content, date})
-    }
-    this.addMilestone(reqObj)
+  componentWillUnmount(){
+    this.props.clearErrors()
   }
 
-
-  addMilestone = reqObj => {
-    fetch('http://localhost:3000/milestones', reqObj)
-    .then(resp => resp.json())
-    .then(milestone => {
-      if(milestone.errors){
-        this.setState({errors: milestone.errors})
-      } else {
-        this.props.addMilestone(milestone)
-        this.props.history.push(`/${this.props.match.params.id}`)
-      }
-    })
+  onSubmit = e => {
+    e.preventDefault()
+    this.props.postMilestone({childId: this.props.match.params.id, ...this.state})
   }
 
 
   renderMessages = () => {
-    let {errors} = this.state
-    return(
-      errors?
-        <div>{errors.map(error => <Message size="tiny" error header={error}/>)}</div>
-      :null
-    )
+    let { errors } = this.props
+    return errors
+      ? <div>{errors.map(error => <Message size="tiny" error header={error}/>)}</div>
+      : null
   }
 
-  handleChange = e => {
-    this.setState({[e.target.name]: e.target.value})
-  }
+  handleChange = e => this.setState({[e.target.name]: e.target.value})
 
   render() {
     return(
@@ -60,7 +40,7 @@ class MilestoneForm extends Component {
         <Form onSubmit={this.onSubmit}>
           <Form.Field required>
             <label>Date</label>
-            <input placeholder='2019-11-10' name="date" onChange={this.handleChange}/>
+            <input type="date" name="date" onChange={this.handleChange}/>
           </Form.Field>
           <Form.Field required>
             <label>Milestone</label>
@@ -73,10 +53,17 @@ class MilestoneForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    addMilestone: milestone => dispatch(addMilestone(milestone))
+    errors: state.errors
   }
 }
 
-export default connect(null, mapDispatchToProps)(MilestoneForm);
+const mapDispatchToProps = dispatch => {
+  return {
+    postMilestone: milestone => dispatch(postMilestone(milestone)),
+    clearErrors: () => dispatch(clearErrors())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MilestoneForm);

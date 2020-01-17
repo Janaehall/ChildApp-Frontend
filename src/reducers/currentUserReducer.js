@@ -23,10 +23,7 @@ const currentUserReducer = (state = initialState, action) => {
         children: action.user.children
       }
     case "RECEIVE_USER_ERROR":
-      return Object.assign({}, state, {
-        isError: true,
-        hasFetched: false
-      })
+      return {...state, isError: true, hasFetched: false}
     case "SIGN_OUT":
       return initialState 
     default:

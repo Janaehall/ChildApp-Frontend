@@ -1,34 +1,45 @@
 import React, {Component} from 'react'
 import {Comment, Icon} from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {delComment} from '../../actions/comments'
+import {delComment, patchComment} from '../../actions/comments'
+import EditCommentForm from './EditCommentForm'
 
 class MyComment extends Component {
+  state = {
+    isEditing: false
+  }
+
+  toggleEditing = () => this.setState({isEditing: !this.state.isEditing})
 
   deleteComment = () => {
     let { comment, post, delComment } = this.props
     delComment(post.id, comment.id)
   }
 
-  renderDeleteBtn = () => {
-    return this.props.currentUser.id === this.props.comment.user.id?
-      <Icon className="delBtn" name="delete" onClick={this.deleteComment}/>
-    : null
+  renderEditBtns = () => {
+    return this.props.currentUser.id === this.props.comment.user.id
+      ? <div>
+          <Icon className="delBtn" name="delete small" onClick={this.deleteComment}/>
+          <Icon className="delBtn" name="edit outline" onClick={this.toggleEditing}/>
+        </div>
+       : null
   }
  
     render(){
-      let {comment} = this.props
+      let {comment, patchComment} = this.props
       return(
-      <Comment style={{'min-height':'3em'}}>
-      {this.renderDeleteBtn()}
-      <Comment.Avatar src={comment.user.profile_pic}/>
-      <Comment.Content>
-        <Comment.Author style={{'display':'inline-block'}}>{comment.user.name}</Comment.Author>
-        <Comment.Metadata>{comment.date.split('T')[0]}</Comment.Metadata>
-        <Comment.Text>{comment.content}</Comment.Text>
-      </Comment.Content>
-      </Comment>
-
+        this.state.isEditing
+          ? <EditCommentForm comment={comment} 
+              patchComment={patchComment} toggleEditing={this.toggleEditing}/>
+          : <Comment style={{'min-height':'3em'}}>
+              {this.renderEditBtns()}
+              <Comment.Avatar src={comment.user.profile_pic}/>
+              <Comment.Content>
+                <Comment.Author style={{'display':'inline-block'}}>{comment.user.name}</Comment.Author>
+                <Comment.Metadata>{comment.date.split('T')[0]}</Comment.Metadata>
+                <Comment.Text>{comment.content}</Comment.Text>
+              </Comment.Content>
+            </Comment>
       )
     }
   }
@@ -41,7 +52,9 @@ class MyComment extends Component {
 
   const mapDispatchToProps = dispatch => {
     return {
-      delComment: (post_id, comment_id) =>  dispatch(delComment(post_id, comment_id))
+      delComment: (postId, commentId) =>  dispatch(delComment(postId, commentId)),
+      patchComment: (comment) => dispatch(patchComment(comment))
+
     }
   }
 

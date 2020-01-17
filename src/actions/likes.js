@@ -1,5 +1,6 @@
-export const delLike = (postId, likeId) => {
-  return {type: "DELETE_LIKE", postId, likeId}
+export const delLike = (like) => {
+  // console.log(like)
+  return {type: "DELETE_LIKE", like}
 }
 
 export const addLike = (like) => {

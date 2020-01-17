@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Comments from './Comments'
-import {Button, Icon} from 'semantic-ui-react'
+import {Button, Icon, Divider} from 'semantic-ui-react'
 import {delPost, editPost} from '../../actions/posts'
 import {connect} from 'react-redux'
 import EditPostForm from './EditPostForm'
@@ -44,12 +44,7 @@ class Post extends Component{
       <EditPostForm 
         post={post} toggleEditing={this.toggleEditing} editPost={this.props.editPost}/>
     : 
-      <div id="postBody">
-       <div id="postContent">{post.content}</div>
-          <div id="postImages">
-            {this.renderPhotos()}
-          </div>
-      </div>
+       <div className="postContent">{post.content}</div>
   }
 
   render(){
@@ -57,14 +52,21 @@ class Post extends Component{
     let name
     this.props.currentUser.id === post.user.id? name = "You" : name = post.user.name
     return(
-      <div id="post">
+      <div>
+      <div className='post'>
+        <Divider vertical fitted>{post.created_at.split('T')[0]}</Divider>
         <div id="postHeader">
           {this.renderDelBtn()}
           <img id="profpicThumbnail" src={post.user.profile_pic} alt=''/>
           <div id="postSummary">{name} posted on his page</div>
           <div id="postDate">{post.created_at.split('T')[0]}</div>
         </div>
+        <div id="postBody">
         {this.renderContent()}
+        <div id="postImages">
+            {this.renderPhotos()}
+          </div>
+        </div>
         <div id="postFooter">
           <div id="postComments">
             <Button id="showCommentBtn" onClick={this.toggleComments}>
@@ -75,7 +77,8 @@ class Post extends Component{
           </div>
             <Comments post={post} display={this.state.display}/>
         </div>
-      </div>
+        </div>
+        </div>
     )
   }
 }

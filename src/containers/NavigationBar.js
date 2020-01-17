@@ -25,10 +25,8 @@ class Navigationbar extends Component {
       <Menu id="navBar" size='small'>
       <Menu.Item name='My Child'/>
       <Menu.Menu position='right'>
-        <ChildrenDropdown 
-          handleClick={this.handleClick} children={children}/>
-        <FriendsChildrenDropdown 
-          handleClick={this.handleClick} friendsChildren={friendsChildren}/>
+        <ChildrenDropdown handleClick={this.handleClick} children={children}/>
+        <FriendsChildrenDropdown handleClick={this.handleClick} friendsChildren={friendsChildren}/>
         <Menu.Item id="userInfo">
           <img id="profpicThumbnail" src={currentUser.profile_pic} alt=''/> 
           Welcome, {currentUser.name}!

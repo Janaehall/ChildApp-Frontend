@@ -4,16 +4,16 @@ import MyComment from './MyComment'
 import CommentForm from './CommentForm'
 
 const Comments = props => {
+  let {post, display} = props
 
   const renderComments = () => {
-    let {post} = props
     return post.comments.map(comment => <MyComment comment={comment} post={post}/>)
   }
 
     return(
-      <div style={{'display': props.display}}>
+      <div style={{'display': display}}>
         <Comment.Group>{renderComments()}</Comment.Group>
-        <CommentForm post={props.post}/>
+        <CommentForm post={post}/>
       </div>
     )
 }

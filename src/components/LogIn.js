@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Form, Button, Message} from 'semantic-ui-react'
-import {logIn} from '../actions/user'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Form, Button, Message, Icon } from 'semantic-ui-react'
+import { logIn } from '../actions/user'
 
 class LogIn extends Component {
 
@@ -35,6 +35,7 @@ class LogIn extends Component {
         <h1 id="timelineHeader">Log In To MyChild</h1>
         {this.renderError()}
         <Form onSubmit={this.onSubmit}>
+
         <Form.Field required>
           <label>Email</label>
           <input value={this.state.email} placeholder='Email' 
