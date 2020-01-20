@@ -5,6 +5,7 @@ import FriendsChildrenDropdown from '../components/FriendsChildrenDropdown'
 import {history} from '../actions/history'
 import {Menu, Button} from  'semantic-ui-react'
 import {setChild} from '../actions/child'
+import {Link} from 'react-router-dom'
 
 class Navigationbar extends Component {
 
@@ -23,7 +24,7 @@ class Navigationbar extends Component {
     let {children, friendsChildren, currentUser} = this.props
     return(
       <Menu id="navBar" size='small'>
-      <Menu.Item name='My Child'/>
+      <Menu.Item name='My Child' as={Link} to="/homepage"/>
       <Menu.Menu position='right'>
         <ChildrenDropdown handleClick={this.handleClick} children={children}/>
         <FriendsChildrenDropdown handleClick={this.handleClick} friendsChildren={friendsChildren}/>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { editChild } from '../actions/child'
+import { editChildren } from '../actions/user'
 import { connect } from 'react-redux'
 
 
@@ -24,6 +25,7 @@ class EditChildForm extends Component {
   onSubmit = e => {
     e.preventDefault()
     this.props.editChild(this.state.child)
+    this.props.editChildren(this.state.child)
   }
 
   handleChange = e => {
@@ -62,7 +64,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editChild: child =>dispatch(editChild(child))
+    editChild: child =>dispatch(editChild(child)),
+    editChildren: child =>dispatch(editChildren(child))
   }
 }
 

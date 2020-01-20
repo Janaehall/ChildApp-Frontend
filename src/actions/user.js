@@ -61,6 +61,13 @@ export function submitUser(newUser){
   }
 }
 
+export const editChildren = (child) => {
+  return {
+    type: "EDIT_CHILDREN",
+    child
+  }
+}
+
 // onSubmit = e => {
 //   e.preventDefault()
 //   let userData = new FormData()

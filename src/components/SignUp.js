@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Form, Button, Message} from 'semantic-ui-react'
 import { submitUser } from '../actions/user'
+import { Link } from 'react-router-dom'
 
 class SignUp extends Component {
 
@@ -38,7 +39,7 @@ class SignUp extends Component {
   render() {
     return(
       <div id="logInForm">
-        <h1 id="timelineHeader">Sign Up To MyChild</h1>
+        <h1 id="timelineHeader">Sign Up For My Child</h1>
         {this.renderMessages()}
       <Form onSubmit={this.onSubmit}>
         <Form.Field>
@@ -62,6 +63,7 @@ class SignUp extends Component {
         <input type="file" name="profile_pic" onChange={this.handleChange}/>
        </Form.Field>
        <Button type='submit'>Sign Up</Button>
+       <Button as={Link} to="/login" >Back to Log In</Button>
       </Form>
       </div>
 

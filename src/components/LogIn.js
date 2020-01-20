@@ -32,7 +32,7 @@ class LogIn extends Component {
   render() {
     return(
       <div id="logInForm">
-        <h1 id="timelineHeader">Log In To MyChild</h1>
+        <h1 id="timelineHeader">Sign In To My Child</h1>
         {this.renderError()}
         <Form onSubmit={this.onSubmit}>
 

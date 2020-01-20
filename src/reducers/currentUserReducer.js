@@ -26,6 +26,10 @@ const currentUserReducer = (state = initialState, action) => {
       return {...state, isError: true, hasFetched: false}
     case "SIGN_OUT":
       return initialState 
+    case "EDIT_CHILD":
+      return {...state, children: state.children.map(child => {
+        return child.id === action.child.id ? action.child : child
+      })}
     default:
       return state;
   }

@@ -34,7 +34,7 @@ class Post extends Component{
 
   renderPhotos = () => {
     return this.props.post.photos.map(photo => {
-      return <img id="thumbnail" src={photo} alt=''/>
+      return <img id="thumbnail" src={photo} alt='' onClick={() => this.props.handleModal(photo)}/>
     })
   }
 

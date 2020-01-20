@@ -3,9 +3,23 @@ import { connect } from 'react-redux'
 import Milestone from '../components/milestones/Milestone'
 import Post from '../components/posts/Post'
 import { setChild } from '../actions/child'
+import PhotoModal from '../components/PhotoModal'
 
 
 class Timeline extends Component {
+  state = {
+    modal: false
+  }
+
+  handleModal = photo => {
+    this.setState({photo: photo})
+    this.toggleModal()
+  }
+
+
+  toggleModal = () => {
+    this.setState({modal: !this.state.modal})
+  }
 
   renderTimeline = () => {
     let { posts, milestones } = this.props.child
@@ -27,7 +41,7 @@ class Timeline extends Component {
     return (
       items.map(item => {
         return posts.includes(item) 
-          ? <Post post={item}/> 
+          ? <Post post={item} handleModal={this.handleModal}/> 
           : <Milestone name={name} milestone={item}/>
       })
     )
@@ -35,9 +49,10 @@ class Timeline extends Component {
 
   render(){
     return(
-      <div id="timeline">
-        {this.renderTimeline()}
-      </div>
+        <div id="timeline">
+        <PhotoModal photo={this.state.photo} show={this.state.modal} hide={this.toggleModal}/>
+          {this.renderTimeline()}
+        </div>
     )
   }
 }
