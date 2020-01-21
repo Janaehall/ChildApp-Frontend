@@ -1,3 +1,5 @@
+import { history } from './history'
+
 
 export const receivedChild = child => {
   return {
@@ -32,7 +34,9 @@ export function setChild(id){
     fetch(`http://localhost:3000/children/${id}`)
     .then(resp => resp.json())
     .then(child=> {
-      dispatch(receivedChild(child))
+      child.error
+      ? history.push("/homepage")
+      : dispatch(receivedChild(child))
     })
   }
 }

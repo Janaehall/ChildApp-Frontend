@@ -73,9 +73,9 @@ class Post extends Component{
               Show Comments({post.comments.length})
               <i aria-hidden="true" class="dropdown icon"></i>
             </Button>
-            <LikeButton post={post}/>
+            <LikeButton likeable={post} type="Post"/>
           </div>
-            <Comments post={post} display={this.state.display}/>
+            <Comments commentable={post} type="Post" display={this.state.display}/>
         </div>
         </div>
         </div>

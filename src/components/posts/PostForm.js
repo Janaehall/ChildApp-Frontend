@@ -41,7 +41,7 @@ class PostForm extends Component {
     return(
         <div>
           {[...this.state.photos].map(image => {
-            return <img className="postFormTn" src={URL.createObjectURL(image)}/>
+            return <img className="postFormTn" src={URL.createObjectURL(image)} alt=''/>
           })}
         </div>
     )
@@ -62,9 +62,9 @@ class PostForm extends Component {
           </Form.Field>
           {this.renderImages()}
           <Form.Field required>
-            <input multiple type="file" onChange={this.handleImageUpload} style={{'display':'inline-block'}}/>
+            <input multiple type="file" accept="image/*" onChange={this.handleImageUpload} style={{'display':'inline-block'}}/>
           </Form.Field>
-          <Button type='submit'>Add</Button>
+          <Button type='submit'>Add Post</Button>
         </Form>
       </div>
     )

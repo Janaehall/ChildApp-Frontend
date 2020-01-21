@@ -12,8 +12,8 @@ class MyComment extends Component {
   toggleEditing = () => this.setState({isEditing: !this.state.isEditing})
 
   deleteComment = () => {
-    let { comment, post, delComment } = this.props
-    delComment(post.id, comment.id)
+    let { type, comment, commentable, delComment } = this.props
+    delComment(type, commentable.id, comment.id)
   }
 
   renderEditBtns = () => {
@@ -29,7 +29,7 @@ class MyComment extends Component {
       let {comment, patchComment} = this.props
       return(
         this.state.isEditing
-          ? <EditCommentForm comment={comment} 
+          ? <EditCommentForm comment={comment} type={this.props.type}
               patchComment={patchComment} toggleEditing={this.toggleEditing}/>
           : <Comment style={{'min-height':'3em'}}>
               {this.renderEditBtns()}
@@ -52,8 +52,8 @@ class MyComment extends Component {
 
   const mapDispatchToProps = dispatch => {
     return {
-      delComment: (postId, commentId) =>  dispatch(delComment(postId, commentId)),
-      patchComment: (comment) => dispatch(patchComment(comment))
+      delComment: (type, commentableId, commentId) =>  dispatch(delComment(type, commentableId, commentId)),
+      patchComment: (type, comment) => dispatch(patchComment(type, comment))
 
     }
   }

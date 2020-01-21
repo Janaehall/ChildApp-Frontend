@@ -11,7 +11,7 @@ class EditCommentForm extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-    this.props.patchComment(this.state.comment)
+    this.props.patchComment(this.props.type, this.state.comment)
     this.props.toggleEditing()
   }
 

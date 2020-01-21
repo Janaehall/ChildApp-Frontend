@@ -43,7 +43,6 @@ export function editMilestone(milestone){
 }
 
 export function postMilestone(milestone){
-  console.log(milestone)
   return function(dispatch){
     let { childId, content, date } = milestone
     let reqObj = {

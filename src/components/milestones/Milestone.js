@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
-import { Icon, Divider } from 'semantic-ui-react'
+import { Icon, Divider, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { delMilestone, editMilestone } from '../../actions/milestones'
 import EditMilestoneForm from './EditMilestoneForm'
 import ParentalAccess from '../auth/ParentalAccess'
+import Comments from '../posts/Comments'
+import LikeButton from '../posts/LikeButton'
 
 
 class Milestone extends Component{
   state = {
+    display: 'none',
     isEditing: false
+  }
+
+  toggleComments = () => {
+    this.state.display === 'none'?
+      this.setState({display: 'block'})
+    : this.setState({display: 'none'})
   }
 
   deleteMilestone = () => {this.props.delMilestone(this.props.milestone.id)}
@@ -37,6 +46,16 @@ class Milestone extends Component{
             : <div className="milestoneContent">
                 <img id="milestoneImg" src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/child-512.png" alt=''/>
                 <h2>{milestone.content}</h2>
+                <div id="postFooter">
+                  <div id="postComments">
+                    <Button id="showCommentBtn" onClick={this.toggleComments}>
+                      Show Comments({milestone.comments.length})
+                      <i aria-hidden="true" class="dropdown icon"></i>
+                    </Button>
+                    <LikeButton likeable={milestone} type="Milestone"/>
+                  </div>
+                    <Comments commentable={milestone} type="Milestone" display={this.state.display}/>
+                </div>
               </div>
             }
         </div>

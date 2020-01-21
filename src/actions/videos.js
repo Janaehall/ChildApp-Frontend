@@ -21,7 +21,6 @@ export function postVideo(newVideo) {
       if(video.errors){
         dispatch(setErrors(video.errors))
       } else {
-        console.log(video)
         dispatch(addVideo(video.video))
         history.push(`/${childId}/videos`)
       }

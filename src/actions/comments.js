@@ -1,38 +1,57 @@
 import {setErrors, clearErrors} from './errors'
 
-export const addComment = (comment) => {
-  console.log(comment)
+export const addPostComment = (comment) => {
   return {
-    type: "ADD_COMMENT",
+    type: "ADD_POST_COMMENT",
     comment
   }
 }
 
-export const deleteComment = (post_id, comment_id) => {
+export const addMilestoneComment = (comment) => {
   return {
-    type: "DELETE_COMMENT",
+    type: "ADD_MILESTONE_COMMENT",
+    comment
+  }
+}
+
+export const deletePostComment = (post_id, comment_id) => {
+  return {
+    type: "DELETE_POST_COMMENT",
     comment_id,
     post_id
   }
 }
 
-export function delComment(post_id, comment_id){
-  return function(dispatch) {
-    fetch(`http://localhost:3000/comments/${comment_id}`, {'method': 'DELETE'})
-    .then(resp => dispatch(deleteComment(post_id, comment_id)))
+export const deleteMilestoneComment = (milestone_id, comment_id) => {
+  return {
+    type: "DELETE_MILESTONE_COMMENT",
+    comment_id,
+    milestone_id
   }
 }
 
-export function postComment(comment){
+export function delComment(type, commentable_id, comment_id){
+  return function(dispatch) {
+    fetch(`http://localhost:3000/comments/${comment_id}`, {'method': 'DELETE'})
+    .then(resp => {
+      type==="Post" 
+        ? dispatch(deletePostComment(commentable_id, comment_id))
+        : dispatch(deleteMilestoneComment(commentable_id, comment_id))
+    })
+  }
+}
+
+export function postPostComment(comment){
   return function(dispatch){
-    let { userId, postId, content } = comment
+    let { userId, commentableId, content } = comment
     let reqObj = {
       'method': 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         content,
         user_id: userId,
-        post_id: postId
+        commentable_id: commentableId,
+        commentable_type: 'Post'
       })
     }
     fetch(`http://localhost:3000/comments`, reqObj)
@@ -41,15 +60,41 @@ export function postComment(comment){
       if(comment.error){
         dispatch(setErrors([comment.error]))
       } else {
-        dispatch(addComment(comment))
+        dispatch(addPostComment(comment))
         dispatch(clearErrors())
       }
     })
   }
-  // this.postComment(reqObj)
 }
 
-export function patchComment(comment){
+
+export function postMilestoneComment(comment){
+  return function(dispatch){
+    let { userId, commentableId, content } = comment
+    let reqObj = {
+      'method': 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        content,
+        user_id: userId,
+        commentable_id: commentableId,
+        commentable_type: 'Milestone'
+      })
+    }
+    fetch(`http://localhost:3000/comments`, reqObj)
+    .then(resp => resp.json())
+    .then(comment => {
+      if(comment.error){
+        dispatch(setErrors([comment.error]))
+      } else {
+        dispatch(addMilestoneComment(comment))
+        dispatch(clearErrors())
+      }
+    })
+  }
+}
+export function patchComment(type, comment){
+  console.log(type)
   return function(dispatch){
     let { content, id } = comment
     let reqObj = {
@@ -63,16 +108,23 @@ export function patchComment(comment){
       if(comment.error){
         dispatch(setErrors([comment.error]))
       } else {
-        dispatch(editComment(comment))
+        type === "Post" ? dispatch(editPostComment(comment)) : dispatch(editMilestoneComment(comment))
         dispatch(clearErrors())
       }
     })
   }
 }
 
-export const editComment = (comment) => {
+export const editPostComment = (comment) => {
   return {
-    type: "EDIT_COMMENT",
+    type: "EDIT_POST_COMMENT",
+    comment
+  }
+}
+
+export const editMilestoneComment = (comment) => {
+  return {
+    type: "EDIT_MILESTONE_COMMENT",
     comment
   }
 }

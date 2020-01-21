@@ -1,7 +1,4 @@
 const initialState = {
-  id: null,
-  name: null,
-  birthdate: null,
   milestones: [],
   posts: [],
   videos: [],
@@ -44,20 +41,27 @@ const childReducer = (state = initialState, action) => {
       case "ADD_MILESTONE":
         return {...state, milestones: [...state.milestones, action.milestone]}
       case "ADD_VIDEO":
-        console.log(action.video)
         return {...state, videos: [...state.videos, action.video]}
-      case "ADD_COMMENT":
+      case "ADD_POST_COMMENT":
         return {...state,
           posts: state.posts.map(post => {
-            return post.id === action.comment.post_id?
+            return post.id === action.comment.commentable_id?
               {...post, comments: [...post.comments, action.comment]}
             : post
           })
         }
-      case "EDIT_COMMENT":
+      case "ADD_MILESTONE_COMMENT":
+        return {...state,
+          milestones: state.milestones.map(milestone => {
+            return milestone.id === action.comment.commentable_id?
+              {...milestone, comments: [...milestone.comments, action.comment]}
+            : milestone
+          })
+        }
+      case "EDIT_POST_COMMENT":
           return {...state,
             posts: state.posts.map(post => {
-              return post.id === action.comment.post_id?
+              return post.id === action.comment.commentable_id?
                 {...post,
                   comments: post.comments.map(comment => {
                     return comment.id === action.comment.id? action.comment : comment
@@ -65,7 +69,18 @@ const childReducer = (state = initialState, action) => {
               : post
             })
           }
-      case "DELETE_COMMENT":
+      case "EDIT_MILESTONE_COMMENT":
+        return {...state,
+          milestones: state.milestones.map(milestone => {
+            return milestone.id === action.comment.commentable_id?
+              {...milestone,
+                comments: milestone.comments.map(comment => {
+                  return comment.id === action.comment.id? action.comment : comment
+                })}
+              : milestone
+          })
+        }
+      case "DELETE_POST_COMMENT":
         return {...state,
           posts: state.posts.map(post => {
             return post.id === action.post_id?
@@ -75,22 +90,50 @@ const childReducer = (state = initialState, action) => {
             : post
           })
         }
-      case "DELETE_LIKE":
+      case "DELETE_MILESTONE_COMMENT":
+        return {...state,
+          milestones: state.milestones.map(milestone => {
+            return milestone.id === action.milestone_id?
+              {...milestone,
+                comments: milestone.comments.filter(comment => comment.id !== action.comment_id)
+              }
+            : milestone
+          })
+        }
+      case "DELETE_POST_LIKE":
           return {...state,
             posts: state.posts.map(post => {
-              return post.id === action.like.post_id
+              return post.id === action.like.likeable_id
                 ? {...post, likes: post.likes.filter(like => like.id !== action.like.id)}
                 : post
             })
           }
-      case "ADD_LIKE":
+      case "DELETE_MILESTONE_LIKE":
+        return {...state,
+          milestones: state.milestones.map(milestone => {
+            return milestone.id === action.like.likeable_id
+              ? {...milestone, likes: milestone.likes.filter(like => like.id !== action.like.id)}
+              : milestone
+          })
+        }
+      case "ADD_POST_LIKE":
+        console.log("action.like")
         return {...state,
           posts: state.posts.map(post => {
-            return post.id === action.like.post_id?
+            return post.id === action.like.likeable_id?
               {...post, likes: [...post.likes, action.like]}
             : post
           })
         }
+        case "ADD_MILESTONE_LIKE":
+          console.log("MILESTONE LIKE!")
+          return {...state,
+            milestones: state.milestones.map(milestone => {
+              return milestone.id === action.like.likeable_id?
+                {...milestone, likes: [...milestone.likes, action.like]}
+              : milestone
+            })
+          }
       case "DELETE_POST":
         return {...state, posts: state.posts.filter(post => post.id !== action.post_id)}
       case "EDIT_POST":

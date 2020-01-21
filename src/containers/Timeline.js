@@ -39,10 +39,10 @@ class Timeline extends Component {
       return b.date > a.date ? 1 : b.date < a.date ? -1 : 0
     })
     return (
-      items.map(item => {
+      items.map((item, index) => {
         return posts.includes(item) 
-          ? <Post post={item} handleModal={this.handleModal}/> 
-          : <Milestone name={name} milestone={item}/>
+          ? <Post post={item} handleModal={this.handleModal} key={index}/> 
+          : <Milestone name={name} milestone={item} key={index}/>
       })
     )
   }

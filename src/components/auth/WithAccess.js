@@ -25,13 +25,9 @@ export default function WithAccess(AuthorizedComponent) {
           history.push('/login')
         } else if(children.includes(parseInt(id))){
           setChild(id)
-          console.log(ParentalAccess(user, {id: parseInt(id)}))
           if(/new_post|new_milestone|add_family|add_video|edit_child/.test(this.props.location.pathname) && !ParentalAccess(user, {id: parseInt(id)})){
             history.push(`/${id}`)
           }
-          // console.log(this.props.location)
-          // console.log(/new_post|new_milestone|add_family/.test(this.props.location.pathname))
-          // if (this.props.match.params)
 
         } else {
           history.push('/homepage')

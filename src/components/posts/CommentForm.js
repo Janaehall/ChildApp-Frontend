@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { postComment } from '../../actions/comments'
+import { postPostComment, postMilestoneComment} from '../../actions/comments'
 import { clearErrors } from '../../actions/errors'
 
 
 class CommentForm extends Component {
   state = {
     userId: this.props.currentUser.id,
-    postId: this.props.post.id,
+    commentableId: this.props.commentable.id,
     content: ''
   }
 
@@ -19,8 +19,9 @@ class CommentForm extends Component {
   handleChange = e => this.setState({content: e.target.value})
 
   onSubmit = e => {
+    let {type, postPostComment, postMilestoneComment} = this.props
     e.preventDefault()
-    this.props.postComment(this.state)
+    type === "Post" ? postPostComment(this.state) : postMilestoneComment(this.state)
     this.setState({content: ''})
   }
 
@@ -47,7 +48,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    postComment: (comment) => dispatch(postComment(comment)),
+    postPostComment: (comment) => dispatch(postPostComment(comment)),
+    postMilestoneComment: (comment) => dispatch(postMilestoneComment(comment)),
     clearErrors: () => dispatch(clearErrors())
   }
 }
