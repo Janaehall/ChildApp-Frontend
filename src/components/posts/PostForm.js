@@ -6,15 +6,16 @@ import {clearErrors} from '../../actions/errors'
 
 
 class PostForm extends Component {
-
   state = {
     content: '',
     photos: []
   }
 
+
   componentWillUnmount(){
     this.props.clearErrors()
   }
+
 
   onSubmit = e => {
     e.preventDefault()
@@ -24,6 +25,7 @@ class PostForm extends Component {
       childId: match.params.id, 
       ...this.state})
   }
+
 
   renderMessages = () => {
     return(
@@ -37,6 +39,7 @@ class PostForm extends Component {
     )
   }
 
+
   renderImages = () => {
     return(
         <div>
@@ -47,10 +50,13 @@ class PostForm extends Component {
     )
   }
 
+
   handleImageUpload = e => this.setState({photos: e.target.files})
+
 
   handleChange = e => this.setState({[e.target.name]: e.target.value})
 
+  
   render() {
     return(
         <div id="logInForm">

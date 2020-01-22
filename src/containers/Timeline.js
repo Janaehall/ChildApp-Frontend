@@ -31,6 +31,7 @@ class Timeline extends Component {
   }
 
   renderMilestonesAndPosts = () => {
+    const uuid = require('uuid')
     let {posts, milestones, name} = this.props.child
     posts = posts.map(post => {
       return {...post, date: post.created_at}
@@ -41,8 +42,8 @@ class Timeline extends Component {
     return (
       items.map((item, index) => {
         return posts.includes(item) 
-          ? <Post post={item} handleModal={this.handleModal} key={index}/> 
-          : <Milestone name={name} milestone={item} key={index}/>
+          ? <Post post={item} handleModal={this.handleModal} key={item.id}/> 
+          : <Milestone name={name} milestone={item} key={item.id}/>
       })
     )
   }

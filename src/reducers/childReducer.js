@@ -117,7 +117,6 @@ const childReducer = (state = initialState, action) => {
           })
         }
       case "ADD_POST_LIKE":
-        console.log("action.like")
         return {...state,
           posts: state.posts.map(post => {
             return post.id === action.like.likeable_id?
@@ -126,7 +125,6 @@ const childReducer = (state = initialState, action) => {
           })
         }
         case "ADD_MILESTONE_LIKE":
-          console.log("MILESTONE LIKE!")
           return {...state,
             milestones: state.milestones.map(milestone => {
               return milestone.id === action.like.likeable_id?

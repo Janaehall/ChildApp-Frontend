@@ -7,15 +7,16 @@ import { clearErrors } from '../../actions/errors'
 
 
 class MilestoneForm extends Component {
-
   state = {
     content: '',
     date: ''
   }
 
+
   componentWillUnmount(){
     this.props.clearErrors()
   }
+
 
   onSubmit = e => {
     e.preventDefault()
@@ -30,7 +31,9 @@ class MilestoneForm extends Component {
       : null
   }
 
+
   handleChange = e => this.setState({[e.target.name]: e.target.value})
+
 
   render() {
     return(
@@ -52,6 +55,7 @@ class MilestoneForm extends Component {
     )
   }
 }
+
 
 const mapStateToProps = state => {
   return {

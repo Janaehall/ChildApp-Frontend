@@ -19,12 +19,14 @@ class ActionButtons extends Component {
           <Menu.Item name='Add Milestone' onClick={() => this.handleClick('new_milestone')} />
           <Menu.Item name='Add Video' onClick={() => this.handleClick('add_video')} />
           <Menu.Item name='Add Family Member' onClick={() => this.handleClick('add_family')}/>
-          <Menu.Item name={`Edit Child`} onClick={() => this.handleClick('edit_child')}/>
+          <Menu.Item name='Edit Child' onClick={() => this.handleClick('edit_child')}/>
+          <Menu.Item name='Delete Child' onClick={() => this.handleClick('delete_child')}/>
         </Menu>
       : null
     )
   }
 }
+
 
 const mapStateToProps = state => {
   return {

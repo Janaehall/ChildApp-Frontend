@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { postPostComment, postMilestoneComment} from '../../actions/comments'
+import { postComment } from '../../actions/comments'
 import { clearErrors } from '../../actions/errors'
 
 
@@ -12,22 +12,26 @@ class CommentForm extends Component {
     content: ''
   }
 
+
   componentWillUnmount(){
     this.props.clearErrors()
   }
 
+
   handleChange = e => this.setState({content: e.target.value})
 
+
   onSubmit = e => {
-    let {type, postPostComment, postMilestoneComment} = this.props
     e.preventDefault()
-    type === "Post" ? postPostComment(this.state) : postMilestoneComment(this.state)
+    let { type, postComment } = this.props
+    postComment(type, this.state)
     this.setState({content: ''})
   }
 
+
   render(){
     let myClass
-    this.props.errors ? myClass = "field error" : myClass = "field"
+    this.props.errors ? myClass = "error" : myClass = ""
     return(
       <Form reply>
         <Form.TextArea 
@@ -39,6 +43,7 @@ class CommentForm extends Component {
   }
 }
 
+
 const mapStateToProps = state => {
   return{
     currentUser: state.currentUser.user,
@@ -48,8 +53,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return{
-    postPostComment: (comment) => dispatch(postPostComment(comment)),
-    postMilestoneComment: (comment) => dispatch(postMilestoneComment(comment)),
+    postComment: (type, comment) => dispatch(postComment(type, comment)),
     clearErrors: () => dispatch(clearErrors())
   }
 }

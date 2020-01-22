@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 export default function WithAuth(AuthorizedComponent) {
   
@@ -16,6 +16,7 @@ export default function WithAuth(AuthorizedComponent) {
       .then(resp => resp.json())
       .then(user => user.error ? history.push('/login') : authUser(user))
     }
+    
 
     render(){
       return(

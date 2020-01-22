@@ -22,8 +22,8 @@ class Videos extends Component {
       return(
         videos.length > 0
            ? <div>
-              {videos.map(video => {
-                return <video onClick={() => this.handleModal(video)} className="myMedia" src={video} alt=''/>
+              {videos.map((video, index) => {
+                return <video onClick={() => this.handleModal(video)} className="myMedia" src={video} alt='' key={index}/>
               })}
             </div>
           : <h1 id="timelineHeader">No Videos</h1>

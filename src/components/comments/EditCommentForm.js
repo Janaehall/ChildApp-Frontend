@@ -7,13 +7,16 @@ class EditCommentForm extends Component {
     comment: this.props.comment
   }
 
+
   handleChange = e => this.setState({comment: {...this.state.comment, content: e.target.value}})
+
 
   onSubmit = e => {
     e.preventDefault()
     this.props.patchComment(this.props.type, this.state.comment)
     this.props.toggleEditing()
   }
+
 
   render(){
     return(
@@ -25,5 +28,6 @@ class EditCommentForm extends Component {
     )
   }
 }
+
 
 export default EditCommentForm

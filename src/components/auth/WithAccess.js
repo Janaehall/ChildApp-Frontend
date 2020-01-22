@@ -8,13 +8,13 @@ export default function WithAccess(AuthorizedComponent) {
     componentDidMount(){
       let { id } = this.props.match.params
       let  { history, authUser, setChild } = this.props
-
       const reqObj = {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       }
+
 
       fetch('http://localhost:3000/current_user', reqObj)
       .then(resp => resp.json())
@@ -28,15 +28,12 @@ export default function WithAccess(AuthorizedComponent) {
           if(/new_post|new_milestone|add_family|add_video|edit_child/.test(this.props.location.pathname) && !ParentalAccess(user, {id: parseInt(id)})){
             history.push(`/${id}`)
           }
-
         } else {
           history.push('/homepage')
         }
-          // ? history.push('/login')
-          // : children.includes(parseInt(id))? setChild(id)
-          // : history.push('/homepage')
       })
     }
+    
 
     render(){
       return(

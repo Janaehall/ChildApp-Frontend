@@ -30,6 +30,9 @@ const currentUserReducer = (state = initialState, action) => {
       return {...state, children: state.children.map(child => {
         return child.id === action.child.id ? action.child : child
       })}
+    case "DELETE_CHILD":
+      return {...state, 
+        children: state.children.filter(child => child.id !== action.child.id)}
     default:
       return state;
   }

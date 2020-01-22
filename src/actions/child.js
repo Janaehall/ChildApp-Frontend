@@ -1,4 +1,5 @@
 import { history } from './history'
+import { deleteChild } from './user'
 
 
 export const receivedChild = child => {
@@ -52,6 +53,13 @@ export function editChild(child){
     fetch(`http://localhost:3000/children/${id}`, reqObj)
     .then(resp => resp.json())
     .then(child => dispatch(editThisChild(child)))
+  }
+}
+
+export function delChild(child){
+  return function(dispatch){
+  fetch(`http://localhost:3000/children/${child.id}`, {method: "DELETE"})
+  .then(resp => dispatch(deleteChild(child)))
   }
 }
 

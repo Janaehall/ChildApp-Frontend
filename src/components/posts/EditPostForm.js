@@ -4,10 +4,10 @@ import {Form, Button} from 'semantic-ui-react'
 
 
 class EditPostForm extends Component {
-
   state = {
     post: this.props.post
   }
+
 
   onSubmit = e => {
     e.preventDefault()
@@ -15,7 +15,9 @@ class EditPostForm extends Component {
     this.props.toggleEditing()
   }
 
+
   handleChange = e => this.setState({post: {...this.state.post, content: e.target.value}})
+
 
   render() {
     return(
@@ -29,5 +31,6 @@ class EditPostForm extends Component {
     )
   }
 }
+
 
 export default EditPostForm

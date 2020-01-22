@@ -3,7 +3,6 @@ export const delPostLike = (like) => {
 }
 
 export const addPostLike = (like) => {
-  console.log("adding post like")
   return {type: "ADD_POST_LIKE", like}
 }
 
@@ -12,7 +11,6 @@ export const delMilestoneLike = (like) => {
 }
 
 export const addMilestoneLike = (like) => {
-  console.log("adding milestone like")
   return {type: "ADD_MILESTONE_LIKE", like}
 }
 

@@ -14,6 +14,7 @@ import { Switch, Route } from 'react-router-dom'
 import { setChild, clearChild} from '../actions/child'
 import {Loader} from 'semantic-ui-react'
 import VideoForm  from '../components/VideoForm'
+import DeleteChild from '../components/DeleteChild'
 
 
 class ChildPage extends Component {
@@ -45,6 +46,7 @@ class ChildPage extends Component {
                 <Route exact path="/:id/videos" component={Videos}/>
                 <Route exact path="/:id/edit_child" component={EditChildForm}/>
                 <Route exact path="/:id/add_video" component={VideoForm}/>
+                <Route exact path="/:id/delete_child" component={DeleteChild}/>
               </Switch>
             </div>
           : this.props.child.isFetching 

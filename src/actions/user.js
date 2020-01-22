@@ -68,6 +68,13 @@ export const editChildren = (child) => {
   }
 }
 
+export const deleteChild = child => {
+  return {
+    type: "DELETE_CHILD",
+    child
+  }
+}
+
 // onSubmit = e => {
 //   e.preventDefault()
 //   let userData = new FormData()

@@ -179,6 +179,10 @@
 		font-size: .785rem;
 } */
 
+.error {
+  background-color: rgba(255, 0, 0, 0.274);
+}
+
 
 
 .milestone {
@@ -335,43 +339,28 @@
   text-align:center;
   padding-bottom:20px;
   height:0px;
-  /* margin:10% 50%; */
   margin-left:40%;
-  /* margin-right:50%; */
   margin-top:1%;
-  /* padding:10% 50%; */
   width:10%;
   float:left;
   z-index:-1;
-  /* position:fixed; */
-  /* display:flex; */
-  /* display:inline-block; */
-  /* position:fixed; */
   border-bottom:solid black 4px;
 }
 
 #milestoneLine {
   height:20px;
   padding-bottom:20px;
-  /* margin:10% 50%; */
   margin-right:40%;
   margin-top:1%;
-  /* padding:10% 50%; */
   width:10%;
   float:right;
   z-index:-1;
   text-align:center;
-  /* text-align:center; */
-  /* position:fixed; */
-  /* display:flex; */
-  /* display:inline-block; */
-  /* position:fixed; */
   border-bottom:solid black 4px;
 }
 
 body {
   margin-top:100px;
-  /* background-color: #F8F8FF; */
 }
 
 #date {
@@ -424,9 +413,6 @@ body {
 }
 
 #homepage {
-  /* border: solid black 1px; */
-  /* width: 60%; */
-  /* height: 50%; */
   margin:5% 10% 5% 10%;
   text-align:center;
   padding: 50px;
@@ -507,7 +493,7 @@ video {
 }
 
 #timelineBtns > .item {
-  margin: 0% 2.5% !important;
+  margin: 0% 1.7% !important;
   /* background-color:white; */
 }
 
@@ -516,8 +502,7 @@ video {
 }
 
 #actionBtns > .item {
-  margin: 0px 5% !important;
-  /* background-color:white; */
+  margin: 0px 3.4% !important;
 }
 
 #children {
@@ -527,7 +512,6 @@ video {
 
 #timelineBtns {
   margin-top: 10px;
-  /* border-top: solid rgba(0, 0, 0, 0.479) 1px; */
 }
 
 #childInfo > #birthday {

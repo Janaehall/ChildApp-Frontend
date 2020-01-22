@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import PhotoModal from '../components/PhotoModal'
-import {Loader} from 'semantic-ui-react'
 
 class Photos extends Component {
   state = {
@@ -24,8 +23,8 @@ class Photos extends Component {
     return(
       photos.length > 0
         ? <div>
-            {photos.map(photo => {
-              return <img onClick={() => this.handleModal(photo)} className="myMedia" src={photo} alt=''/>
+            {photos.map((photo, index) => {
+              return <img onClick={() => this.handleModal(photo)} className="myMedia" src={photo} alt='' key={index}/>
             })}
           </div>
         : <h1 id="timelineHeader">No Photos</h1>

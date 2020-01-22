@@ -4,10 +4,10 @@ import {Form, Button} from 'semantic-ui-react'
 
 
 class EditMilestoneForm extends Component {
-
   state = {
     milestone: this.props.milestone
   }
+
 
   onSubmit = e => {
     e.preventDefault()
@@ -15,12 +15,14 @@ class EditMilestoneForm extends Component {
     this.props.toggleEditing()
   }
 
+
   handleChange = e => {
     this.setState({
       milestone: {...this.state.milestone, [e.target.name]: e.target.value}
     })
   }
 
+  
   render() {
     let {date, content} = this.state.milestone
     return(

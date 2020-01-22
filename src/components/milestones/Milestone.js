@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { delMilestone, editMilestone } from '../../actions/milestones'
 import EditMilestoneForm from './EditMilestoneForm'
 import ParentalAccess from '../auth/ParentalAccess'
-import Comments from '../posts/Comments'
-import LikeButton from '../posts/LikeButton'
+import Comments from '../comments/Comments'
+import LikeButton from '../comments/LikeButton'
 
 
 class Milestone extends Component{
@@ -20,9 +20,12 @@ class Milestone extends Component{
     : this.setState({display: 'none'})
   }
 
+
   deleteMilestone = () => {this.props.delMilestone(this.props.milestone.id)}
 
+
   toggleEditing = () => this.setState({isEditing: !this.state.isEditing})
+
 
   renderDelBtn = () => {
     return ParentalAccess(this.props.currentUser, this.props.child)
@@ -32,6 +35,7 @@ class Milestone extends Component{
       </div>
     : null
   }
+
 
   render(){
     let { milestone, editMilestone } = this.props
@@ -50,14 +54,13 @@ class Milestone extends Component{
                   <div id="postComments">
                     <Button id="showCommentBtn" onClick={this.toggleComments}>
                       Show Comments({milestone.comments.length})
-                      <i aria-hidden="true" class="dropdown icon"></i>
+                      <i aria-hidden="true" className="dropdown icon"></i>
                     </Button>
                     <LikeButton likeable={milestone} type="Milestone"/>
                   </div>
                     <Comments commentable={milestone} type="Milestone" display={this.state.display}/>
                 </div>
-              </div>
-            }
+              </div>}
         </div>
     )
   }
