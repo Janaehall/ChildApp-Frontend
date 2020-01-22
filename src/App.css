@@ -498,11 +498,19 @@ video {
 }
 
 #timelineBtns > .item:hover {
-  color: rgb(102, 71, 71) !important;
+  /* color: rgb(102, 71, 71) !important; */
+  background-color: black;
+  color:white;
 }
 
 #actionBtns > .item {
   margin: 0px 3.4% !important;
+}
+
+#actionBtns > .item:hover {
+  /* margin: 0px 3.4% !important; */
+  background-color: black;
+  color:white;
 }
 
 #children {
