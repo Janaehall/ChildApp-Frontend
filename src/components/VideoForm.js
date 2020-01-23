@@ -48,7 +48,7 @@ class VideoForm extends Component {
   render() {
     return(
         <div id="logInForm">
-          <h1 id="timelineHeader">Add Video</h1>
+          <h1 id="timelineHeader">New Video</h1>
           {this.renderMessages()}
           <Form onSubmit={this.onSubmit}>
           {this.renderVideo()}

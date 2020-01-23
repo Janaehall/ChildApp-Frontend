@@ -45,10 +45,17 @@ export function setChild(id){
 export function editChild(child){
   return function(dispatch){
     let {name, birthdate, id} = child
+    let childData = new FormData()
+    childData.append('child[name]', name)
+    childData.append('child[birthdate]', birthdate)
+    if(child.photo){
+      childData.append('child[photo]', child.photo)
+    }
     let reqObj = {
       method: 'PATCH', 
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({name, birthdate})
+      // headers: {'Content-Type': 'application/json'},
+      // body: JSON.stringify({name, birthdate})
+      body: childData
     }
     fetch(`http://localhost:3000/children/${id}`, reqObj)
     .then(resp => resp.json())

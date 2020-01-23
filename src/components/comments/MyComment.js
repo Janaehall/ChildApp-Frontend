@@ -21,7 +21,7 @@ class MyComment extends Component {
 
   renderEditBtns = () => {
     return this.props.currentUser.id === this.props.comment.user.id
-      ? <div>
+      ? <div className="commentEditBtns">
           <Icon className="delBtn" name="delete small" onClick={this.deleteComment}/>
           <Icon className="delBtn" name="edit outline" onClick={this.toggleEditing}/>
         </div>
@@ -37,11 +37,13 @@ class MyComment extends Component {
         ? <EditCommentForm comment={comment} type={this.props.type}
             patchComment={patchComment} toggleEditing={this.toggleEditing}/>
         : <Comment style={{'min-height':'3em'}}>
-            {this.renderEditBtns()}
+            {/* {this.renderEditBtns()} */}
             <Comment.Avatar src={comment.user.profile_pic}/>
             <Comment.Content>
               <Comment.Author style={{'display':'inline-block'}}>{comment.user.name}</Comment.Author>
-              <Comment.Metadata>{comment.date.split('T')[0]}</Comment.Metadata>
+              <Comment.Metadata><p className="commentDate">{comment.date.split('T')[0]} </p>
+              {this.renderEditBtns()}
+              </Comment.Metadata>
               <Comment.Text>{comment.content}</Comment.Text>
             </Comment.Content>
           </Comment>

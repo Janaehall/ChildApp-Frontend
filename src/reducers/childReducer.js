@@ -34,7 +34,8 @@ const childReducer = (state = initialState, action) => {
           name: action.child.name, 
           birthdate: action.child.birthdate, 
           birthday: action.child.birthday, 
-          age: action.child.age
+          age: action.child.age,
+          photo: action.child.photo
         }
       case "ADD_POST":
         return {...state, posts: [...state.posts, action.post]}

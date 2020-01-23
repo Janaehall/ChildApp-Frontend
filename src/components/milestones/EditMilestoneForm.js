@@ -26,7 +26,7 @@ class EditMilestoneForm extends Component {
   render() {
     let {date, content} = this.state.milestone
     return(
-          <Form onSubmit={this.onSubmit}>
+          <Form id="milestoneEdit" onSubmit={this.onSubmit}>
           <Form.Field>
             <label>Date</label>
             <input value={date} name="date" type="date" onChange={this.handleChange}/>

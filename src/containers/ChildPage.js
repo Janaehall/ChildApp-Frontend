@@ -23,6 +23,14 @@ class ChildPage extends Component {
     this.props.clearChild()
   }
 
+  renderPhoto = () => {
+    let photos = []
+    this.props.posts.forEach(post => photos.push(...post.photos))
+    return photos.length > 1
+      ? photos[Math.floor(Math.random()*photos.length)]
+      : "https://www.sackettwaconia.com/wp-content/uploads/default-profile.png"
+  }
+
   render(){
     let { photo, name, age, birthday } = this.props.child
     return(
@@ -60,7 +68,8 @@ const mapStateToProps = state => {
   return({
     currentUser: state.currentUser,
     child: state.child,
-    hasFetched: state.child.hasFetched
+    hasFetched: state.child.hasFetched,
+    posts: state.child.posts
    })
 }
 

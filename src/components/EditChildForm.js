@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'semantic-ui-react'
-import { editChild } from '../actions/child'
+import { editChild, editThisChild } from '../actions/child'
 import { editChildren } from '../actions/user'
 import { connect } from 'react-redux'
 
@@ -29,9 +29,13 @@ class EditChildForm extends Component {
   }
 
   handleChange = e => {
-    this.setState({
-      child: {...this.state.child, [e.target.name]: e.target.value}
-    })
+    e.target.name === 'photo'
+      ? this.setState({
+          child: {...this.state.child, photo: e.target.files[0]}
+        })
+      :  this.setState({
+          child: {...this.state.child, [e.target.name]: e.target.value}
+        })
   }
 
   render() {
@@ -47,6 +51,10 @@ class EditChildForm extends Component {
           <Form.Field required>
             <label>Birthdate</label>
             <input value={birthdate} type="date" name="birthdate" onChange={this.handleChange}/>
+          </Form.Field>
+          <Form.Field>
+            <label>Change Photo</label>
+            <input type="file" name="photo" onChange={this.handleChange}/>
           </Form.Field>
           <Button type='submit'>Update Child</Button>
         </Form>

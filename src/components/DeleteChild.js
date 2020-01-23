@@ -7,16 +7,16 @@ class DeleteChild extends Component {
 
   deleteChild = () => {
     this.props.history.push('/homepage')
-    // fetch(`http://localhost:3000/children/${this.props.child.id}`)
     this.props.delChild(this.props.child)
   }
 
 
   render(){
     return (
-      <div>
-        <h3>Are you sure you want to delete {this.props.child.name}?</h3>
-        <Button type="alert" content="Delete" onClick={this.deleteChild}/>
+      <div id="timelineHeader">
+        <h3>Are you sure you want to delete {this.props.child.name}'s profile?</h3>
+        <br/>
+        <Button color="red" type="alert" content="Delete" onClick={this.deleteChild}/>
       </div>
     )
   }
