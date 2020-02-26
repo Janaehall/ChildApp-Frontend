@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu } from 'semantic-ui-react'
 import ActionButtons from './ActionButtons'
 import { history } from '../actions/history'
+import { ParentalAccess } from '../components/auth/ParentalAccess'
 
 const TimelineButtons = props => {
 

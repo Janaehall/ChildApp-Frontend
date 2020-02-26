@@ -46,10 +46,14 @@ class LikeButton extends Component {
 
 
   render(){
+    let word
+    this.props.likeable.likes.length === 1
+      ? word = "Like"
+      : word = "Likes"
     return(
       <div id="likes" onClick={this.toggleLike}>
         <Icon id={this.state.hasLiked? "liked":"unliked"} name='like'/>
-        {this.props.likeable.likes.length} Likes
+        {this.props.likeable.likes.length} {word}
       </div>
     )
   }

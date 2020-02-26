@@ -14,7 +14,9 @@ export default function WithAuth(AuthorizedComponent) {
       }
       fetch('http://localhost:3000/current_user', reqObj)
       .then(resp => resp.json())
-      .then(user => user.error ? history.push('/login') : authUser(user))
+      .then(user => {
+        console.log(user)
+        user.error ? history.push('/login') : authUser(user)})
     }
     
 

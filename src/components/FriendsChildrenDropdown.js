@@ -15,7 +15,7 @@ class FriendsChildrenDropdown extends Component {
             )
           })}
         </div>
-    : <Dropdown.Item>None</Dropdown.Item>
+    : <Dropdown.Item id="none">None</Dropdown.Item>
   }
 
   render(){

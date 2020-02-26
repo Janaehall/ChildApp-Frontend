@@ -31,16 +31,23 @@ class Timeline extends Component {
   }
 
   renderMilestonesAndPosts = () => {
-    const uuid = require('uuid')
     let {posts, milestones, name} = this.props.child
+   
     posts = posts.map(post => {
-      return {...post, date: post.created_at}
+      return {...post, compareDate: post.created_at}
     })
+
+    milestones = milestones.map(milestone => {
+      let time = milestone.created_at.split("T")[1]
+      return {...milestone, compareDate: milestone.date + "T" + time}
+    })
+
     let items = (posts.concat(milestones)).sort((a,b) => {
-      return b.date > a.date ? 1 : b.date < a.date ? -1 : 0
+      return b.compareDate > a.compareDate ? 1 : b.compareDate < a.compareDate ? -1 : 0
     })
+
     return (
-      items.map((item, index) => {
+      items.map(item => {
         return posts.includes(item) 
           ? <Post post={item} handleModal={this.handleModal} key={item.id}/> 
           : <Milestone name={name} milestone={item} key={item.id}/>
