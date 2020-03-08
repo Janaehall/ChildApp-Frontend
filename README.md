@@ -1,68 +1,31 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# My Child (Front-End)
 
-## Available Scripts
+Welcome to My Child! This is the front-end for the My Child application. My Child allows you to share your child's updates, milestones, photos and videos with friends and loved ones of your choosing. 
 
-In the project directory, you can run:
+## Getting Started
 
-### `yarn start`
+These instructions will get you a copy of the project up and running on your local machine.
+
+### Prerequisites
+
+In order to run this application, you must have the following: 
+  1. A PostGres server running on port 5434
+ 
+### Set Up
 
 Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  Navigate to the proper directory
+  1. From there, cd into ChildApp-backend and run the following commands to create the required databases and run the necessary migrations:
+  ```
+    rails db:create
+    rails db:migrate
+  ```
+  2. Once all of the migrations are complete, enter the following command to run a rails server on port 3000
+    ```
+      rails s
+    ```  
+  2. Return to the main directory, then navigate to childapp-frontend
+    b. Run ```npm start```
+  3. Open your browser of choice (This application was built in and optimized for Google Chrome) and navigate to      "http://localhost:3001/login" to begin using the application.
+  
