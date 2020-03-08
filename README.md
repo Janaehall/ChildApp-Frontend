@@ -21,11 +21,9 @@ Runs the app in the development mode.<br />
     rails db:create
     rails db:migrate
   ```
-  2. Once all of the migrations are complete, enter the following command to run a rails server on port 3000
-    ```
-      rails s
-    ```  
-  2. Return to the main directory, then navigate to childapp-frontend
+  2. Once all of the migrations are complete, enter ```rails s``` to run a rails server on port 3000
+
+  3. Return to the main directory, then navigate to childapp-frontend
     b. Run ```npm start```
-  3. Open your browser of choice (This application was built in and optimized for Google Chrome) and navigate to      "http://localhost:3001/login" to begin using the application.
+  4. Open your browser of choice (This application was built in and optimized for Google Chrome) and navigate to      "http://localhost:3001/login" to begin using the application.
   
