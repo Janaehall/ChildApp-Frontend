@@ -25,4 +25,4 @@ Before you begin the following steps, please clone this repository along with <a
 
   3. Return to the main directory, then navigate to childapp-frontend and run ```npm start```
   4. Open your browser of choice (This application was built in and optimized for Google Chrome) and navigate to      http://localhost:3001/login to begin using the application.
-  
+
