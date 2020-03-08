@@ -15,7 +15,7 @@ In order to run this application, you must have the following:
 ### Set Up
 
 Runs the app in the development mode.<br />
-Before you begin the following steps, please clone this repository along with <a href="https://github.com/Janaehall/ChildApp-Backend>ChildApp-Backend</a>
+Before you begin the following steps, please clone this repository along with <a href="https://github.com/Janaehall/ChildApp-Backend">ChildApp-Backend</a>
   1. Navigate to ChildApp-backend and run the following commands to create the required databases and run the necessary migrations:
   ```
     rails db:create
