@@ -17,6 +17,7 @@ Runs the app in the development mode.<br />
 Before you begin the following steps, please clone this repository along with [ChildApp-Backend](https://github.com/Janaehall/ChildApp-Backend)
   1. Navigate to ChildApp-backend and run the following commands to create the required databases and run the necessary migrations:
   ```
+    bundle install
     rails db:create
     rails db:migrate
   ```
